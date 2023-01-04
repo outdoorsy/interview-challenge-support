@@ -48,13 +48,20 @@ _NOTE: The amount for price that is stored in the database is in cents._
 
 ## Question 3
 In the sql provided, you will see we have a bookings table and a transactions table.
-For every booking that has been approved, departed or returned should have at least one associated charge.
-For every booking that has been departed or returned should have at least one associated payout.
+
+For every booking that has been `approved`, `departed` or `returned` should have at least one associated charge.
+
+For every booking that has been `departed` or `returned` should have at least one associated payout.
 
 We had a user call in regarding a booking they said they were not paid for. The booking ID that is problematic is ID: 2.
 
 Can you confirm that we did not issue a payout to this user?
 If we did not issue a payout for this booking, can we investigate if this issue has happened on other bookings?
+
+## Bonus
+For every booking, we store the `total` in the bookings table. The collected charge amounts for the associated booking are stored in the transactions table.
+
+Can you write a query to review the bookings that have charges and ensure that we have not overcharged any customers?
 
 ## Notes
 - You will not need to run the project but if you'd like there are instructions found below.
