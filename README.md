@@ -6,7 +6,7 @@ This repository contains database file (sql) and application code that should be
 Below you will find several questions that are issues that have been escalated. We'd like you to review each question and find a solution or next steps to the problem.
 
 ## Question 1
-The user, John Smith, called into support and reported that one of his listings in Portland is not properly seen in search results when filtering in the area. The customer has 6 listings total (3 in California, 2 in Oregon and 1 in Washington). He says that the information for city and state appear to look fine on the website but the vehicle continues to not appear when he tries to do a search for it.
+The user, John Smith, called into support and reported that one of his listings in Portland does not show up in search results when searching in the area. The customer has 6 listings total (3 in California, 2 in Oregon and 1 in Washington). He says that the information for city and state look correct on the website but the vehicle continues to not appear when he tries to do a search for it.
 
 When searching for vehicles the client makes a request to the rentals API. Here is an example one when searching in Hawaii.
 http://127.0.0.1:3000/rentals?near=20.88,-156.45
