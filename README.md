@@ -17,9 +17,9 @@ _NOTE: The rentals table contains the city, state and country._
 
 
 ## Question 2
-User, Tom Edision, has written into support asking why his weekly price on one of vehicles (Ford Transit Campervan) is lower than he expects.
-He says he hasn't applied any discounts but for some reason his daily price is set to 239 and his weekly price is set at 1,505.70. 
-He expects his daily price to be his daily price x 7 days which is 1,673.
+User, Tom Edision, has written into support asking why the weekly price on one of his vehicles (Ford Transit Campervan) is lower than he expects.
+He says he hasn't applied any discounts and his daily price is set to $239 and his weekly price is showing as $1,505.70. 
+He expects his daily price to be his daily price x 7 days which would be $1,673.
 
 ```json
    {
