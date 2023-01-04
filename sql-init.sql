@@ -70,3 +70,60 @@ VALUES
 (3, 'sCAMPer X','camper-van','ac tellus phasellus ultrices nostra eros aenean metus ridiculus adipiscing habitant nulla cubilia tortor rhoncus quisque sem ultrices varius massa mollis congue praesent nam ante',4,17500,0,'Atlanta','GA','30310','US','Ram','Promaster',2020,19,'2021-11-29 22:42:06.478595+00','2021-11-29 22:42:06.478595+00',33.73,-84.41,'https://res.cloudinary.com/outdoorsy/image/upload/v1589910541/p/rentals/156152/images/jvyvtqoeljadoizjjzag.jpg'),
 (4, '2015 Dodge Sprinter Van','camper-van','pretium non litora lobortis pharetra elit sociosqu platea nostra interdum odio vestibulum tincidunt mi blandit convallis pellentesque tempor viverra fermentum ultricies nunc egestas id arcu',2,17000,0,'Silverthorne','CO','80498','US','Dodge','Sprinter Van',2015,20,'2021-11-29 22:42:06.478595+00','2021-11-29 22:42:06.478595+00',39.62,-106.09,'https://res.cloudinary.com/outdoorsy/image/upload/v1588550855/p/rentals/162781/images/az0xp8wbdto4pjzlkyh3.jpg'),
 (5, 'The New Adventures of Pearl - 2014 Nissan NV2500 High Top','camper-van','malesuada eget conubia porta sollicitudin urna ad aenean lacus vulputate parturient vulputate suspendisse sit parturient ante mauris maecenas dignissim donec eget adipiscing dui luctus eget',2,18900,0,'Denver','CO','80222','US','Nissan','NV2500',2014,20,'2021-11-29 22:42:06.478595+00','2021-11-29 22:42:06.478595+00',39.67,-104.92,'https://res.cloudinary.com/outdoorsy/image/upload/v1590500837/undefined/rentals/164961/images/t3nkxdl0ua8g6gp1idcm.jpg');
+
+
+CREATE TYPE booking_status AS enum('draft', 'approved', 'departed', 'returned');
+
+CREATE TABLE IF NOT EXISTS bookings (
+    id SERIAL PRIMARY KEY,
+    departure_date timestamp without time zone,
+    return_date timestamp without time zone,
+    rental_id integer REFERENCES rentals,
+    status booking_status,
+    total bigint
+);
+
+INSERT INTO "bookings"("id", "departure_date", "return_date", "rental_id", "status", "total")
+VALUES
+    (1, now() + interval '10 days', now() + interval '11 days', 1, 'approved', 20000),
+    (2, now() - interval '11 days', now() - interval '7 days', 1, 'returned', 25150),
+    (3, now() - interval '1 day', now() + interval '7 days', 1, 'departed', 52500),
+    (4, now() + interval '21 day', now() + interval '30 days', 1, 'draft', 45500),
+    (5, now() - interval '31 days', now() - interval '27 days', 1, 'returned', 50345),
+    (6, now() + interval '30 days', now() + interval '45 days', 2, 'approved', 23400),
+    (7, now() - interval '3 day', now() + interval '8 days', 2, 'departed', 59500),
+    (8, now() - interval '11 days', now() - interval '7 days', 2, 'returned', 45230),
+    (9, now() + interval '17 day', now() + interval '20 days', 2, 'draft', 25500),
+    (10, now() - interval '25 days', now() - interval '20 days', 2, 'returned', 12300),
+    (11, now() - interval '4 days', now() + interval '4 days', 3, 'departed', 22501)
+;
+
+CREATE TYPE transaction_type AS enum('charge', 'payout');
+
+CREATE TABLE IF NOT EXISTS transactions (
+    id SERIAL PRIMARY KEY,
+    booking_id integer REFERENCES bookings,
+    "type" transaction_type,
+    amount bigint
+);
+
+INSERT INTO "transactions"("booking_id", "type", "amount")
+VALUES
+    (1, 'charge', 20000),
+    (1, 'payout', 20000),
+    (2, 'charge', 25150),
+    (3, 'charge', 20000),
+    (3, 'charge', 35500),
+    (3, 'payout', 52500),
+    (5, 'charge', 50345),
+    (5, 'payout', 50345),
+    (6, 'charge', 23400),
+    (7, 'charge', 30000),
+    (7, 'charge', 29500),
+    (7, 'payout', 59500),
+    (8, 'charge', 45230),
+    (8, 'payout', 45230),
+    (10, 'charge', 12300),
+    (10, 'payout', 12300),
+    (11, 'charge', 22501)
+;

@@ -11,7 +11,7 @@ The user, John Smith, called into support and reported that one of his listings 
 When searching for vehicles the client makes a request to the rentals API. Here is an example one when searching in Hawaii.
 http://127.0.0.1:3000/rentals?near=20.88,-156.45
 
-Can you help us understand why the vehicle is not showing properly?
+Using the data provided, can you help us understand why the vehicle is not showing properly?
 
 _NOTE: The rentals table contains the city, state and country._
 
@@ -42,16 +42,23 @@ He expects his weekly price to be his daily price x 7 days which would be $1,673
     }
 ```
 
-Can you look into why his daily price wouldn't be set correctly?
+Using the application code and the data set provided, can you look into why his daily price wouldn't be set correctly?
 
 _NOTE: The amount for price that is stored in the database is in cents._
 
 ## Question 3
-TODO: Some question about payouts - Find all bookings that we have haven't paid out that have been returned
+In the sql provided, you will see we have a bookings table and a transactions table.
+For every booking that has been approved, departed or returned should have at least one associated charge.
+For every booking that has been departed or returned should have at least one associated payout.
+
+We had a user call in regarding a booking they said they were not paid for. The booking ID that is problematic is ID: 2.
+
+Can you confirm that we did not issue a payout to this user?
+If we did not issue a payout for this booking, can we investigate if this issue has happened on other bookings?
 
 ## Notes
 - You will not need to run the project but if you'd like there are instructions found below.
-- TODO: include dbfiddle
+- You can write queries easily using this DBFiddle - https://www.db-fiddle.com/f/mXKjSo1dUsfbDr9p1prG2g/0
 
 ## What we're looking for
 - An ability to dig into a problem and find a resolution.
