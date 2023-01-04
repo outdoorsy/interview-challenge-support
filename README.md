@@ -47,9 +47,9 @@ Using the application code and the data set provided, can you look into why his 
 _NOTE: The amount for price that is stored in the database is in cents._
 
 ## Question 3
-In the sql provided, you will see we have a bookings table and a transactions table. 
+In the sql provided, you will see we have a bookings table and a transactions table.
 The transactions table holds both credit card charges to the customer (renter) and payouts to the host (owner of the vehicle).
-The booking status lifecycle goes from draft -> approved -> departed -> returned.
+The booking status lifecycle goes from `draft` -> `approved` -> `departed` -> `returned`.
 
 A charge will occur once the booking has been approved. So, for every booking that has been `approved`, `departed` or `returned` should have at least one associated charge.
 
