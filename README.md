@@ -6,12 +6,14 @@ This repository contains database file (sql) and application code that should be
 Below you will find several questions that are issues that have been escalated. We'd like you to review each question and find a solution or next steps to the problem.
 
 ## Question 1
-The user, John Smith, called into support and reported that one of his listings in Portland does not show up in search results when searching in the area. The customer has 6 listings total (3 in California, 2 in Oregon and 1 in Washington). He says that the information for city and state look correct on the website but the vehicle continues to not appear when he tries to do a search for it.
+The user, John Smith, called into support and reported that one of his listings in Portland does not show up in search results when searching in the area. 
+The customer has 6 listings total (3 in California, 2 in Oregon and 1 in Washington).
+He says that the information for city and state look correct on the website but the vehicle continues to not appear when he tries to do a search for it.
 
-When searching for vehicles the client makes a request to the rentals API. Here is an example one when searching in Hawaii.
-http://127.0.0.1:3000/rentals?near=20.88,-156.45
+When searching for vehicles the client makes a request to the rentals API (/rentals) with a `near` query param of the location.
 
-Using the data provided, can you help us understand why the vehicle is not showing properly?
+Using the data provided and the application code, can you help us understand why the vehicle is not showing properly?
+What are the next steps?
 
 _NOTE: The rentals table contains the city, state and country._
 
@@ -43,27 +45,36 @@ He expects his weekly price to be his daily price x 7 days which would be $1,673
 ```
 
 Using the application code and the data set provided, can you look into why his daily price wouldn't be set correctly?
+What are the next steps?
 
 _NOTE: The amount for price that is stored in the database is in cents._
 
 ## Question 3
-In the sql provided, you will see we have a bookings table and a transactions table.
+In the sql provided, you will see we have a `bookings` table and a `transactions` table.
 The transactions table holds both credit card charges to the customer (renter) and payouts to the host (owner of the vehicle).
 The booking status lifecycle goes from `draft` -> `approved` -> `departed` -> `returned`.
 
-A charge will occur once the booking has been approved. So, for every booking that has been `approved`, `departed` or `returned` should have at least one associated charge.
+A charge will occur once the booking has been approved.
+So, for every booking that has been `approved`, `departed` or `returned` should have at least one associated charge.
+A charge in the transactions table will have type `charge`.
 
-A payout will occur once the booking has departed. So, for every booking that has been `departed` or `returned` should have at least one associated payout.
+A payout will occur once the booking has departed.
+So, for every booking that has been `departed` or `returned` should have at least one associated payout.
+A payout in the transactions table will have type `payout`.
 
-We had a user call in regarding a booking they said they were not paid for. The booking ID that is problematic is ID: 2.
+We had a host (owner of the vehicle) call in regarding a booking they said they were not paid for. The booking ID that is problematic is ID: 2.
 
 Can you confirm that we did not issue a payout to this user?
 If we did not issue a payout for this booking, can we investigate if this issue has happened on other bookings?
+What are the next steps?
 
 ## Bonus
-For every booking, we store the `total` in the bookings table. The collected charge amounts for the associated booking are stored in the transactions table.
+For every booking, we store the `total` in the bookings table for the total cost of the booking.
+The collected charge amounts for the associated booking are stored in the transactions table.
+The charges have type `charge` in the transactions table.
 
 Can you write a query to review the bookings that have charges and ensure that we have not overcharged any customers?
+If we have overcharged customers, what are the next steps?
 
 ## Notes
 - You will not need to run the project but if you'd like there are instructions found below.
@@ -82,6 +93,6 @@ Can you write a query to review the bookings that have charges and ensure that w
 - Run `go run ./main.go`
 - Visit `http://127.0.0.1:3000/rentals`
 
-When complete, please send the answers and responses back.
+When complete, please send the answers and responses back for each question.
 
 Thank you and please ask if you have any questions!
